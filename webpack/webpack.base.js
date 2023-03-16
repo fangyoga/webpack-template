@@ -31,6 +31,7 @@ module.exports = {
     new WebpackBar(),
   ],
   module: {
+    noParse: /jquery|lodash|chartjs/,
     rules: [
       {
         test: /\.(js|jsx|ts|tsx)$/,

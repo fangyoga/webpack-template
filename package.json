@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "webpack serve --config webpack/webpack.dev.js",
-    "build": "webpack build --config webpack/webpack.prod.js"
+    "build": "webpack build --config webpack/webpack.prod.js",
+    "style": "stylelint \"react/**/*.(less|css)\" --fix"
   },
   "author": "",
   "license": "ISC",
@@ -53,6 +54,8 @@
     "process": "0.11.10",
     "react-refresh": "^0.14.0",
     "style-loader": "^3.3.1",
+    "stylelint": "^15.2.0",
+    "stylelint-config-standard": "^30.0.1",
     "svg-sprite-loader": "^6.0.11",
     "typescript": "^4.6.3",
     "uglifyjs-webpack-plugin": "^2.2.0",
