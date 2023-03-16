@@ -3,13 +3,15 @@ const path = require('path');
 const WebpackBar = require('webpackbar');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-module.exports = () => ({
-  entry: path.resolve(__dirname, '../react/index.js'),
+const rootDir = process.cwd();
+
+module.exports = {
+  entry: path.resolve(rootDir, './react/index.js'),
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.jsx', '.json'],
-    modules: ['node_modules', path.join(__dirname, '../node_modules')],
+    modules: ['node_modules', path.join(rootDir, './node_modules')],
     alias: {
-      '@': path.join(__dirname, '../react'),
+      '@': path.join(rootDir, './react'),
     },
   },
   plugins: [
@@ -17,7 +19,7 @@ module.exports = () => ({
       process: 'process/browser',
     }),
     new HtmlWebpackPlugin({
-      template: path.join(__dirname, '../react/index.html'),
+      template: path.join(rootDir, './react/index.html'),
       title: 'webpack模板',
       hash: true,
       minify: {
@@ -74,4 +76,4 @@ module.exports = () => ({
       },
     ],
   },
-});
+};

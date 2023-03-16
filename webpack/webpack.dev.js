@@ -1,13 +1,16 @@
-const { merge: mergeWebpackConfig } = require('webpack-merge');
 const path = require('path');
+const { merge: mergeWebpackConfig } = require('webpack-merge');
+const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 const baseConfig = require('./webpack.base');
 const getStyleLoader = require('./getStyleLoader');
+
+const rootDir = process.cwd();
 
 module.exports = mergeWebpackConfig(baseConfig, {
   mode: 'development',
   devServer: {
     static: {
-      directory: path.join(__dirname, 'public'),
+      directory: path.join(rootDir, 'public'),
     },
     port: 9000,
     hot: true,
@@ -19,13 +22,16 @@ module.exports = mergeWebpackConfig(baseConfig, {
   },
   devtool: 'source-map',
   output: {
-    path: path.resolve(__dirname, 'dist'),
+    path: path.resolve(rootDir, 'dist'),
     filename: 'js/[name].js',
     chunkFilename: 'jsChunk/[name].chunk.js',
   },
   watchOptions: {
     ignored: /node_modules/,
   },
+  plugins: [
+    new ReactRefreshWebpackPlugin(), // React的组件热更新
+  ],
   module: {
     rules: [
       ...getStyleLoader('development'),

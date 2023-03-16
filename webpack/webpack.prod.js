@@ -1,18 +1,20 @@
+const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const { merge: mergeWebpackConfig } = require('webpack-merge');
-const path = require('path');
 const baseConfig = require('./webpack.base');
-const { getStyleLoader } = require('./getStyleLoader');
+const getStyleLoader = require('./getStyleLoader');
+
+const rootDir = process.cwd();
 
 module.exports = mergeWebpackConfig(baseConfig, {
   mode: 'production',
-  devtool: 'none',
+  devtool: undefined,
   output: {
-    path: path.resolve(__dirname, 'dist'),
-    filename: 'js/[name].[fullhash:8].js',
+    path: path.resolve(rootDir, 'dist'),
+    filename: 'js/[name].[fullhash:8].js', // 生产加hash用于缓存
     chunkFilename: 'jsChunk/[name].[fullhash:5].chunk.js',
   },
   optimization: {
@@ -36,7 +38,7 @@ module.exports = mergeWebpackConfig(baseConfig, {
   ],
   module: {
     rules: [
-      getStyleLoader('production'),
+      ...getStyleLoader('production'),
     ],
   },
 });
