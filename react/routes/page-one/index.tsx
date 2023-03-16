@@ -6,15 +6,12 @@ export interface IProps {
 
 }
 
-const Index: React.FC<IProps> = (props) => {
-  aaa;
-  return (
-    <div>
-      <p>titleOne</p>
-      <img src={img} alt="" />
-      <PageTwo />
-    </div>
-  );
-};
+const Index: React.FC<IProps> = (props) => (
+  <div>
+    <p>titleOne</p>
+    <img src={img} alt="" />
+    <PageTwo />
+  </div>
+);
 
 export default Index;
